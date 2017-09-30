@@ -25,9 +25,14 @@ void Karatsuba::multiply()
 {
 	long long T1, T2, T3;
 	string a_l = a.substr(0, n/2), a_r = a.substr(n/2), b_l = b.substr(0, n / 2), b_r = b.substr(n/2);
-	T1 = atoi(a_l.c_str())* atoi(a_r.c_str());
-	T2 = atoi(b_l.c_str())*atoi(b_r.c_str());
-	T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str()));
+	cout << " n = " << n << endl;
+	cout << "al = " << a_l << endl;
+	cout << "ar = " << a_r << endl;
+	cout << "bl = " << b_l << endl;
+	cout << "br = " << b_r << endl;
+	T1 = atoi(a_l.c_str())* atoi(b_r.c_str());
+	T2 = atoi(b_l.c_str())*atoi(a_r.c_str());
+	T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2;//вот тут может вылазить
 	string _T1 = to_string(T1), _T2 = to_string(T2), _T3 = to_string(T3);
 	
 	for(int i = 0;i<n;i++)
@@ -37,9 +42,8 @@ void Karatsuba::multiply()
 		_T3 += "0";
 
 
-	res = sum(_T3,_T1);
-	string ff = res;
-	res = sum(_T1, ff);
+
+	res = sum(_T2, sum(_T3, _T1));
 	cout << "_T1 = " << _T1 << endl;
 	cout << "_T2 = " << _T2 << endl;
 	cout << "_T3 = " << _T3 << endl;
@@ -58,28 +62,31 @@ string Karatsuba::sum(string a, string b)
 {
 	
 	string result;
+	
 	int k = max(a.size(), b.size());
 	int _k = k;
+
 	for (int i = 0; i < k; i++)
-		result += "z";
+		result += "0"; //init
 
-
-	int delta = 0;
+	string nuliki;
 	int ttt = a.size() - b.size();
 	int raz = abs(ttt);
 
+	for (int i = 0; i < raz; i++)
+		nuliki += "0";
+
 	if (a.size() < b.size()) {
-		delta = atoi(a.c_str());
-		for (int i = 0; i < raz; i++)
-			a += "0";
-		delta = atoi(a.c_str()) - delta;
+
+
+		a = nuliki + a;
 
 	}
 	if (b.size() < a.size()) {
-		delta = atoi(b.c_str());
-		for (int i = 0; i< raz; i++)
-			b += "0";
-		delta = atoi(b.c_str()) - delta;
+
+
+		b = nuliki + b;
+
 
 	}
 	double t = 0;
@@ -87,7 +94,7 @@ string Karatsuba::sum(string a, string b)
 	bool flag = false;//test
 	for (int i = 0; i < _k; i++) {
 
-
+		if (k == 0) system("pause");
 		z = a[k - 1] - '0' + b[k - 1] - '0' + t;
 		t = 0;
 		if (z >= 10) {
@@ -109,8 +116,7 @@ string Karatsuba::sum(string a, string b)
 	if (flag)result = "1" + result;
 
 
-	int g = atoi(result.c_str()) - delta;
-	result = to_string(g);
+
 	
 	return result;
 }
