@@ -3,8 +3,10 @@
 using namespace std;
 
 void main() {
-	string a = "1111";
-	string b = "1111";
+	string a = "111111";
+	string b = "222222";
+
+
 
 	Karatsuba obj(a,b);
 
