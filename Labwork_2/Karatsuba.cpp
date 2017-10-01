@@ -30,8 +30,8 @@ void Karatsuba::multiply()
 	cout << "ar = " << a_r << endl;
 	cout << "bl = " << b_l << endl;
 	cout << "br = " << b_r << endl;
-	T1 = atoi(a_l.c_str())* atoi(b_r.c_str());
-	T2 = atoi(b_l.c_str())*atoi(a_r.c_str());
+	T1 = atoi(a_l.c_str())* atoi(b_l.c_str());
+	T2 = atoi(a_r.c_str())*atoi(b_r.c_str());
 	T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2;//вот тут может вылазить
 	string _T1 = to_string(T1), _T2 = to_string(T2), _T3 = to_string(T3);
 	

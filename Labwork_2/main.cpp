@@ -3,8 +3,8 @@
 using namespace std;
 
 void main() {
-	string a = "1111111111";
-	string b = "2222222222";
+	string a = "1255";
+	string b = "5525";
 
 
 
