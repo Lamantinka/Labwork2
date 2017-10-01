@@ -26,25 +26,47 @@ string Karatsuba::multiply(string a, string b)
 {
 	int n = m_size(a, b);
 	normalize(a, b, n);
+	cout << "n = " << n << endl;
+
 	unsigned long long  T1, T2, T3;
 	string a_l = a.substr(0, n/2), a_r = a.substr(n/2), b_l = b.substr(0, n / 2), b_r = b.substr(n/2);
 	string res;
-	cout << " n = " << n << endl;
+	
+	string test,test2,test3;
+	string _T1, _T2, _T3;
+	
 	cout << "al = " << a_l << endl;
 	cout << "ar = " << a_r << endl;
 	cout << "bl = " << b_l << endl;
 	cout << "br = " << b_r << endl;
-	//string x;
-	//for (int i = 0; i < 2; i++) {
-//		x = multiply(a_l, b_l);
-	//	cout << x << endl;
-//	}
-	T1 = atoi(a_l.c_str())* atoi(b_l.c_str());
-	T2 = atoi(a_r.c_str())*atoi(b_r.c_str());
-	T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2;//вот тут может вылазить
+
+	if (a_l.size() > 6 || b_l.size() > 6) {
+		_T1 = multiply(a_l, b_l);
+		
+	}
+	else {
+		T1 = atoi(a_l.c_str())* atoi(b_l.c_str());
+		_T1 = to_string(T1);
+	}
 	
+	if (a_r.size() > 6 || b_r.size() > 6) {
+		_T2 = multiply(a_r, b_r);
+	
+	}
+	else {
+		T2 = atoi(a_r.c_str())*atoi(b_r.c_str());
+		_T2 = to_string(T2);
+	}
+	if ((a_l + a_r).size() > 12 || (b_l + b_r).size() > 12) {
+		_T3 = multiply((a_l + a_r), (b_l + b_r));
+		system("pause");
+	}
+	else {
+		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) -T1 - T2;//вот тут может вылазить
+		_T3 = to_string(T3);
+	}
 	//дальше пошли стринги полностью, за пределы не вылезет
-	string _T1 = to_string(T1), _T2 = to_string(T2), _T3 = to_string(T3);
+	
 	
 	for(int i = 0;i<n;i++)
 		_T1 += "0";
@@ -121,7 +143,9 @@ string Karatsuba::sum(string a, string b)
 
 	if (flag)result = "1" + result; //magic
 
-
+	//убрать 0 в начале
+	if (result[0] == 0)
+		cout << "сделать тут анти-ноль \n";
 
 	
 	return result;
@@ -136,7 +160,8 @@ int Karatsuba::m_size(string a, string b)
 }
 
 void Karatsuba::normalize( string &a, string &b, int &n) {
-	if (a.size() == b.size()) return;
+	
+	if ((a.size() == b.size()) && a.size() %2 == 0) return;
 	string temp;
 	if (a.size() < b.size()) {
 		for (int i = 0; i < n - a.size(); i++)
@@ -152,5 +177,5 @@ void Karatsuba::normalize( string &a, string &b, int &n) {
 		a = "0" + a;
 		b = "0" + b;
 	}
-	n = a.size();
+	n = b.size();
 }
