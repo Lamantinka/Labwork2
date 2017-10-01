@@ -7,13 +7,13 @@ class Karatsuba
 private:
 	string a;
 	string b;
-	string res;
-	long long n;
 public:
 	string l();
 	Karatsuba(string _a, string _b);
-	void multiply();
-	void m_size();
+	string multiply(string a, string b);
+	int m_size(string a, string b);
 	string sum(string a, string b);
+	void normalize(string &a, string &b, int &n);//выравнивает длины строк
+	
 };
 

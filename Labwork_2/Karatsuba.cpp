@@ -13,26 +13,37 @@ Karatsuba::Karatsuba(string _a, string _b)
 {
 	a = _a;
 	b = _b;
-	m_size();
-	multiply();
+	
+	
+	multiply(a,b);
 	
 }
 
 
 
 
-void Karatsuba::multiply()
+string Karatsuba::multiply(string a, string b)
 {
-	long long T1, T2, T3;
+	int n = m_size(a, b);
+	normalize(a, b, n);
+	unsigned long long  T1, T2, T3;
 	string a_l = a.substr(0, n/2), a_r = a.substr(n/2), b_l = b.substr(0, n / 2), b_r = b.substr(n/2);
+	string res;
 	cout << " n = " << n << endl;
 	cout << "al = " << a_l << endl;
 	cout << "ar = " << a_r << endl;
 	cout << "bl = " << b_l << endl;
 	cout << "br = " << b_r << endl;
+	//string x;
+	//for (int i = 0; i < 2; i++) {
+//		x = multiply(a_l, b_l);
+	//	cout << x << endl;
+//	}
 	T1 = atoi(a_l.c_str())* atoi(b_l.c_str());
 	T2 = atoi(a_r.c_str())*atoi(b_r.c_str());
 	T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2;//вот тут может вылазить
+	
+	//дальше пошли стринги полностью, за пределы не вылезет
 	string _T1 = to_string(T1), _T2 = to_string(T2), _T3 = to_string(T3);
 	
 	for(int i = 0;i<n;i++)
@@ -48,15 +59,10 @@ void Karatsuba::multiply()
 	cout << "_T2 = " << _T2 << endl;
 	cout << "_T3 = " << _T3 << endl;
 	cout << "RES = " << res << endl;
-	
+	return res;
 }
 
-void Karatsuba::m_size()
-{
-	if (a.size() >= b.size()) n = a.size();
-	else n = b.size();
-	
-}
+
 
 string Karatsuba::sum(string a, string b)
 {
@@ -113,10 +119,38 @@ string Karatsuba::sum(string a, string b)
 	}
 
 
-	if (flag)result = "1" + result;
+	if (flag)result = "1" + result; //magic
 
 
 
 	
 	return result;
+}
+
+int Karatsuba::m_size(string a, string b)
+{
+	int n = 0;
+	if (a.size() >= b.size()) n = a.size();
+	else n = b.size();
+	return n;
+}
+
+void Karatsuba::normalize( string &a, string &b, int &n) {
+	if (a.size() == b.size()) return;
+	string temp;
+	if (a.size() < b.size()) {
+		for (int i = 0; i < n - a.size(); i++)
+			temp += "0";
+			a = temp + a;
+	}
+	if (b.size() < a.size()) {
+		for (int i = 0; i < n - b.size(); i++)
+			temp += "0";
+			b = temp + b;
+	}
+	if (a.size() %2 != 0) {
+		a = "0" + a;
+		b = "0" + b;
+	}
+	n = a.size();
 }
