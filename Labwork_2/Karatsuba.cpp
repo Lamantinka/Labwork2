@@ -3,11 +3,6 @@
 #include <cstdlib>
 
 
-string Karatsuba::l()
-{
-
-	return string();
-}
 
 Karatsuba::Karatsuba(string _a, string _b)
 {
@@ -24,20 +19,10 @@ Karatsuba::Karatsuba(string _a, string _b)
 
 string Karatsuba::multiply(string a, string b)
 {
-	int n = m_size(a, b);
+	unsigned long long n = m_size(a, b), T1, T2, T3;
 	normalize(a, b, n);
-	cout << "n = " << n << endl;
 
-	unsigned long long  T1, T2, T3;
-	string a_l = a.substr(0, n/2), a_r = a.substr(n/2), b_l = b.substr(0, n / 2), b_r = b.substr(n/2);
-	string res;
-	
-	string _T1, _T2, _T3;
-	
-	cout << "al = " << a_l << endl;
-	cout << "ar = " << a_r << endl;
-	cout << "bl = " << b_l << endl;
-	cout << "br = " << b_r << endl;
+	string a_l = a.substr(0, n/2), a_r = a.substr(n/2), b_l = b.substr(0, n / 2), b_r = b.substr(n/2),res, _T1, _T2, _T3;
 
 	if (a_l.size() > 6 || b_l.size() > 6) {
 		_T1 = multiply(a_l, b_l);
@@ -62,42 +47,32 @@ string Karatsuba::multiply(string a, string b)
 
 	}
 	else {
-		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2; //вот тут может вылазить
+		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2; 
 		_T3 = to_string(T3);
 	}
-	//дальше пошли стринги полностью, за пределы не вылезет
-	
 	
 	for(int i = 0;i<n;i++)
 		_T1 += "0";
-
 	for (int i = 0; i < n / 2; i++)
 		_T3 += "0";
 
-
-
 	res = sum(_T2, sum(_T3, _T1));
-	cout << "_T1 = " << _T1 << endl;
-	cout << "_T2 = " << _T2 << endl;
-	cout << "_T3 = " << _T3 << endl;
-	cout << "RES = " << res << endl;
+
+	Karatsub = res;
+	
 	return res;
 }
 
 
 //не забыть оптимизировать кол-во строк метода
-string Karatsuba::sum(string a, string b)
-{
+string Karatsuba::sum(string a, string b){
+	string result, nuliki;
 	
-	string result;
-	
-	int k = max(a.size(), b.size());
-	int _k = k;
+	int k; int _k = k = max(a.size(), b.size());
 
 	for (int i = 0; i < k; i++)
 		result += "0"; //init
 
-	string nuliki;
 	int ttt = a.size() - b.size();
 	int raz = abs(ttt);
 
@@ -117,12 +92,11 @@ string Karatsuba::sum(string a, string b)
 
 
 	}
-	double t = 0;
-	unsigned long long z = 0;
-	bool flag = false;//test
-	for (int i = 0; i < _k; i++) {
+	
+	int t = 0, z =0;
+	bool flag = false;
 
-		if (k == 0) system("pause");
+	for (int i = 0; i < _k; i++) {
 		z = a[k - 1] - '0' + b[k - 1] - '0' + t;
 		t = 0;
 		if (z >= 10) {
@@ -153,13 +127,13 @@ string Karatsuba::sum(string a, string b)
 
 int Karatsuba::m_size(string a, string b)
 {
-	int n = 0;
+	unsigned long long n = 0;
 	if (a.size() >= b.size()) n = a.size();
 	else n = b.size();
 	return n;
 }
 
-void Karatsuba::normalize( string &a, string &b, int &n) {
+void Karatsuba::normalize( string &a, string &b, unsigned long long &n) {
 	
 	if ((a.size() == b.size()) && a.size() %2 == 0) return;
 	string temp;
@@ -183,37 +157,34 @@ void Karatsuba::normalize( string &a, string &b, int &n) {
 string Karatsuba::minuss(string a, string b)
 {
 	if (a.size() == b.size() && a[0] < b[0]) {
-		cout << "Читай документация на функцию, лох!\n" << endl;
+		cout << "Читай документация на функцию!\n" << endl;
 		return string();
 	}
-	string res;
-	int k = max(a.size(), b.size());
-	int _k = k;
+
+	string res, nuliki;
+	int k; int _k = k = max(a.size(), b.size());
 
 	for (int i = 0; i < k; i++)
 		res += "0";
 
-	string nuliki;
-	int ttt = a.size() - b.size();
-	int raz = abs(ttt);
+	long long ttt = a.size() - b.size();
+	long long raz = abs(ttt);
 
 	for (int i = 0; i < raz; i++)
 		nuliki += "0";
 
-	if (a.size() < b.size()) {
-
-
+	if (a.size() < b.size()) 
 		a = nuliki + a;
 
-	}
-	if (b.size() < a.size()) {
-
-
+	if (b.size() < a.size())
 		b = nuliki + b;
-
-
+	if (a < b) {
+		string z;
+		a = z;
+		a = b;
+		b = z;
 	}
-	double t = 0;
+	
 	int z = 0;
 	for (int i = 0; i < _k; i++) {
 		if (a[k - 1] < b[k - 1]) {
