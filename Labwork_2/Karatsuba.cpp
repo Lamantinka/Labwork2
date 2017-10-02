@@ -58,10 +58,11 @@ string Karatsuba::multiply(string a, string b)
 	}
 	if ((a_l + a_r).size() > 12 || (b_l + b_r).size() > 12) {
 		_T3 = multiply((sum(a_l, a_r)), (sum(b_l, b_r)));
+		_T3 = minuss(minuss(_T3, _T1), _T2);
 
 	}
 	else {
-		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) -T1 - T2; //вот тут может вылазить
+		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2; //вот тут может вылазить
 		_T3 = to_string(T3);
 	}
 	//дальше пошли стринги полностью, за пределы не вылезет
@@ -84,7 +85,7 @@ string Karatsuba::multiply(string a, string b)
 }
 
 
-
+//не забыть оптимизировать кол-во строк метода
 string Karatsuba::sum(string a, string b)
 {
 	
@@ -177,4 +178,53 @@ void Karatsuba::normalize( string &a, string &b, int &n) {
 		b = "0" + b;
 	}
 	n = b.size();
+}
+
+string Karatsuba::minuss(string a, string b)
+{
+	if (a.size() == b.size() && a[0] < b[0]) {
+		cout << "Читай документация на функцию, лох!\n" << endl;
+		return string();
+	}
+	string res;
+	int k = max(a.size(), b.size());
+	int _k = k;
+
+	for (int i = 0; i < k; i++)
+		res += "0";
+
+	string nuliki;
+	int ttt = a.size() - b.size();
+	int raz = abs(ttt);
+
+	for (int i = 0; i < raz; i++)
+		nuliki += "0";
+
+	if (a.size() < b.size()) {
+
+
+		a = nuliki + a;
+
+	}
+	if (b.size() < a.size()) {
+
+
+		b = nuliki + b;
+
+
+	}
+	double t = 0;
+	int z = 0;
+	for (int i = 0; i < _k; i++) {
+		if (a[k - 1] < b[k - 1]) {
+			a[k - 1] += 10;
+			a[k - 2] -= 1;
+		}
+		z = a[k - 1] - '0' - (b[k - 1] - '0');
+
+		res[k - 1] = z + '0';
+		k--;
+	}
+
+	return res;
 }

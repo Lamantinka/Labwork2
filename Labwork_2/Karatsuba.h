@@ -14,6 +14,7 @@ public:
 	int m_size(string a, string b);
 	string sum(string a, string b);
 	void normalize(string &a, string &b, int &n);//выравнивает длины строк
+	string minuss(string a, string b);
 	
 };
 
