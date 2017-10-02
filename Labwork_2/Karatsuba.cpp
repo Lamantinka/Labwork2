@@ -32,7 +32,6 @@ string Karatsuba::multiply(string a, string b)
 	string a_l = a.substr(0, n/2), a_r = a.substr(n/2), b_l = b.substr(0, n / 2), b_r = b.substr(n/2);
 	string res;
 	
-	string test,test2,test3;
 	string _T1, _T2, _T3;
 	
 	cout << "al = " << a_l << endl;
@@ -58,11 +57,11 @@ string Karatsuba::multiply(string a, string b)
 		_T2 = to_string(T2);
 	}
 	if ((a_l + a_r).size() > 12 || (b_l + b_r).size() > 12) {
-		_T3 = multiply((a_l + a_r), (b_l + b_r));
-		system("pause");
+		_T3 = multiply((sum(a_l, a_r)), (sum(b_l, b_r)));
+
 	}
 	else {
-		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) -T1 - T2;//вот тут может вылазить
+		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) -T1 - T2; //вот тут может вылазить
 		_T3 = to_string(T3);
 	}
 	//дальше пошли стринги полностью, за пределы не вылезет
