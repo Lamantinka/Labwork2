@@ -8,6 +8,7 @@ public:
 	LongInt();
 	LongInt(string _val);
 	LongInt operator *(LongInt a);
-	~LongInt();
+	LongInt operator = (LongInt a);
+	friend 	ostream& operator << (ostream& os, const LongInt& dt);
 };
 
