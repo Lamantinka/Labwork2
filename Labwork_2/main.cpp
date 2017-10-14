@@ -11,8 +11,9 @@ void main() { //минусовые числа не вводить!
 	LongInt _c;
 	_c = _a*_b;
 	cout << _c;*/
-	string a = "9125";
-	string b = "2125";
+	string a = "131";
+	string b = "32132";
+	cout << "a = "  << a << endl;
 	Stolbik(a, b);
 	
 	system("pause");

@@ -71,6 +71,10 @@ string Karatsuba::multiply(string a, string b)
 
 //не забыть оптимизировать кол-во строк метода
 string Karatsuba::sum(string a, string b){
+	
+//	cout << "first = " << a << endl;
+	
+
 	string result, nuliki;
 	
 	int k; int _k = k = max(a.size(), b.size());
@@ -123,10 +127,11 @@ string Karatsuba::sum(string a, string b){
 	if (flag)result = "1" + result; //magic
 
 	//убрать 0 в начале
-	if (result[0] == 0)
-		cout << "сделать тут анти-ноль \n";
-
-	
+	while (result[0] == '0') {
+		cout << "ВОТ тут сделать антиноль" << endl;
+		break;
+	}
+	cout << result << endl;
 	return result;
 }
 
