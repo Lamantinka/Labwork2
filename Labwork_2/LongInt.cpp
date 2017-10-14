@@ -16,7 +16,7 @@ LongInt::LongInt(string _val)
 LongInt LongInt::operator*(LongInt a)
 {
 	Karatsuba obj(val, a.val);
-	return LongInt(obj.Karatsub);
+	return LongInt(obj.Result);
 }
 
 LongInt LongInt::operator=(LongInt a)

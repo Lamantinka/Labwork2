@@ -4,12 +4,12 @@ using namespace std;
 
 class Karatsuba
 {
-private:
+protected:
 	string a;
 	string b;
 public:
-	int zalupa = 0;
-	string Karatsub;
+	Karatsuba() {};
+	string Result;
 	Karatsuba(string _a, string _b);
 	string multiply(string a, string b);
 	int m_size(string a, string b);

@@ -149,10 +149,12 @@
     <ClCompile Include="Karatsuba.cpp" />
     <ClCompile Include="LongInt.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Stolbik.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Karatsuba.h" />
     <ClInclude Include="LongInt.h" />
+    <ClInclude Include="Stolbik.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

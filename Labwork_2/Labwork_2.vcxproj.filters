@@ -24,12 +24,18 @@
     <ClCompile Include="LongInt.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="Stolbik.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Karatsuba.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="LongInt.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Stolbik.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
