@@ -8,6 +8,7 @@ private:
 	string a;
 	string b;
 public:
+	int zalupa = 0;
 	string Karatsub;
 	Karatsuba(string _a, string _b);
 	string multiply(string a, string b);

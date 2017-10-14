@@ -29,6 +29,7 @@ string Karatsuba::multiply(string a, string b)
 		
 	}
 	else {
+		zalupa++;
 		T1 = atoi(a_l.c_str())* atoi(b_l.c_str());
 		_T1 = to_string(T1);
 	}
@@ -39,6 +40,8 @@ string Karatsuba::multiply(string a, string b)
 	}
 	else {
 		T2 = atoi(a_r.c_str())*atoi(b_r.c_str());
+		zalupa++;
+
 		_T2 = to_string(T2);
 	}
 	if ((a_l + a_r).size() > 12 || (b_l + b_r).size() > 12) {
@@ -49,6 +52,8 @@ string Karatsuba::multiply(string a, string b)
 	else {
 		T3 = (atoi(a_l.c_str()) + atoi(a_r.c_str()))  *   (atoi(b_l.c_str()) + atoi(b_r.c_str())) - T1 - T2; 
 		_T3 = to_string(T3);
+		zalupa++;
+
 	}
 	
 	for(int i = 0;i<n;i++)
