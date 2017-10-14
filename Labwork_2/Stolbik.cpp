@@ -14,7 +14,7 @@ Stolbik::Stolbik(string _a, string _b)
 	normalize(a, b, n);
 
 	for (int i = 0; i < n; ++i)
-		res.insert(res.end(), "0"); //заполняет вектор нолями, n = длину чисел
+		res += "0";
 
 	multiply(a, b);
 	
@@ -33,7 +33,7 @@ void Stolbik::minimul(string num)
 {
 	cout << n << endl;
 	for (int i = 0; i < n; ++i) { //обнуляю вектор
-		res[i] = "0";
+		res[i] = '0';
 	}
 	int z = 0, t = 0;
 	int k = n - 1;
@@ -50,7 +50,7 @@ void Stolbik::minimul(string num)
 	}z = 0;
 
 	if (t != 0) {
-		res.insert(res.begin(), to_string(t));
+		res = to_string(t) + res;
 		z = 1;
 	}
 
