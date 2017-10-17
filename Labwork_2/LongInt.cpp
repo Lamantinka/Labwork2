@@ -15,8 +15,15 @@ LongInt::LongInt(string _val)
 
 LongInt LongInt::operator*(LongInt a)
 {
-	Karatsuba obj(val, a.val);
-	return LongInt(obj.Result);
+	if (mul == "1") {
+		Karatsuba obj(val, a.val);
+		return LongInt(obj.Result);
+	}
+	else {
+		//если не 1, то в столбик
+		Stolbik obj(val, a.val);
+		return LongInt(obj.Result);
+	}
 }
 
 LongInt LongInt::operator=(LongInt a)

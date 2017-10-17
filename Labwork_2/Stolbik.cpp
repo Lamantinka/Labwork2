@@ -20,8 +20,14 @@ Stolbik::Stolbik(string _a, string _b)
 	
 }
 
+Stolbik::Stolbik()
+{
+	
+}
+
 void Stolbik::multiply(string a, string b)
 {
+	cout << "Multiply by stolbik" << endl;
 	int k = b.size();
 	
 	for (int i = 0; i < b.size(); i++) {
@@ -59,14 +65,11 @@ void Stolbik::minimul(char num)
 		res = to_string(t) + res;
 	}
 	
-	cout << "res = " << res << endl;
 
 	for (int i = 0; i < chet; i++) {
 		res += "0";
 	}
-
 	Result = sum(res, Result);
-	cout << "result = " << Result << endl;
 	chet++;
 }
 

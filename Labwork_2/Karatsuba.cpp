@@ -9,7 +9,8 @@ Karatsuba::Karatsuba(string _a, string _b)
 	a = _a;
 	b = _b;
 	
-	
+	cout << "Multiply by Karatsuba" << endl;
+
 	multiply(a,b);
 	
 }
@@ -19,6 +20,7 @@ Karatsuba::Karatsuba(string _a, string _b)
 
 string Karatsuba::multiply(string a, string b)
 {
+
 	unsigned long long n = m_size(a, b), T1, T2, T3;
 	normalize(a, b, n);
 
@@ -126,12 +128,7 @@ string Karatsuba::sum(string a, string b){
 
 	if (flag)result = "1" + result; //magic
 
-	//убрать 0 в начале
-	while (result[0] == '0') {
-		cout << "ВОТ тут сделать антиноль" << endl;
-		break;
-	}
-	cout << result << endl;
+
 	return result;
 }
 
